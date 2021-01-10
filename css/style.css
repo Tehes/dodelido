@@ -1,0 +1,97 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #eee;
+    font-family: sans-serif;
+    user-select: none;
+}
+
+main {
+    display: flex;
+	justify-content: center;
+}
+
+main div {
+    width: 200px;
+	height: 260px;
+    margin: 10px;
+    padding: 10px;
+    border: 2px dashed black;
+    border-radius: 5px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-origin: content-box;
+}
+
+main div[class] {
+    border: 2px solid black;
+}
+
+.play {
+    width: 100px;
+    height: auto;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    background-color: #ccc;
+    font-weight: bold;
+}
+
+.Alpaka {
+    background-image: url("../img/Alpaka.svg");
+}
+
+.T-Rex {
+    background-image: url("../img/T-Rex.svg");
+}
+
+.Faultier {
+    background-image: url("../img/Faultier.svg");
+}
+
+.Schildkröte {
+    background-image: url("../img/Schildkröte.svg");
+    background-size: 75% 75%;
+}
+
+.Pinguin {
+    background-image: url("../img/Pinguin.svg");
+    background-size: 80% 80%;
+}
+
+.Wal {
+    background-image: url("../img/Wal.svg");
+}
+
+.Pink {
+    background-color: rgb(183, 117, 255);
+    color: black;
+}
+
+.Weiß {
+    background-color: White;
+    color: black;
+}
+
+.Blau {
+    background-color: rgb(117, 167, 255);
+    color: white;
+}
+
+.Gelb {
+    background-color: rgb(255, 246, 117);
+    color: black;
+}
+
+.Grün {
+    background-color: rgb(166, 255, 117);
+    color: black;
+}
+
+.Schwarz {
+    background-color: rgb(71, 71, 71);
+    color: white;
+}

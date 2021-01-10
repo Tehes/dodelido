@@ -1,0 +1,94 @@
+var dodelido = (function() {
+    /* --------------------------------------------------------------------------------------------------
+    Variables
+    ---------------------------------------------------------------------------------------------------*/
+    var cards = [];
+    var animals = ["Alpaka", "Wal", "Faultier", "Schildkröte", "Pinguin", "T-Rex"];
+    var colors = ["Pink", "Weiß", "Blau", "Gelb", "Grün", "Schwarz"];
+    var round = 0;
+
+    /* --------------------------------------------------------------------------------------------------
+    functions
+    ---------------------------------------------------------------------------------------------------*/
+    function getRndInteger(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function newCard() {
+        var animal, animalInt, color, colorInt;
+
+        animalInt = getRndInteger(0, 105);
+
+        if (animalInt <= 20) {
+            animal = animals[0];
+        }
+        else if (animalInt > 20 && animalInt <= 40) {
+            animal = animals[1];
+        }
+        else if (animalInt > 40 && animalInt <= 60) {
+            animal = animals[2];
+        }
+        else if (animalInt > 60 && animalInt <= 80) {
+            animal = animals[3];
+        }
+        else if (animalInt > 80 && animalInt <= 100) {
+            animal = animals[4];
+        }
+        else if (animalInt > 100 && animalInt <= 105) {
+            animal = animals[5];
+        }
+
+        colorInt = getRndInteger(0, 100);
+
+        if (colorInt <= 20) {
+            color = colors[0];
+        }
+        else if (colorInt > 20 && colorInt <= 40) {
+            color = colors[1];
+        }
+        else if (colorInt > 40 && colorInt <= 60) {
+            color = colors[2];
+        }
+        else if (colorInt > 60 && colorInt <= 80) {
+            color = colors[3];
+        }
+        else if (colorInt > 80 && colorInt <= 100) {
+            color = colors[4];
+        }
+
+        if (animal === "T-Rex") {
+            color = colors[5];
+        }
+
+        return {
+            animal: animal,
+            color: color
+        };
+    }
+
+    function play() {
+        var index = round % 3;
+        cards[index] = newCard();
+        var slot = document.querySelectorAll("main div")[index];
+
+        slot.className = cards[index].color + " " + cards[index].animal;
+
+        round++;
+    }
+
+    function init() {
+        var playButton = document.querySelector(".play");
+
+        playButton.addEventListener("click", play, false);
+    }
+
+    /* --------------------------------------------------------------------------------------------------
+    public members, exposed with return statement
+    ---------------------------------------------------------------------------------------------------*/
+    return {
+        init: init
+    };
+
+})();
+
+dodelido.init();
