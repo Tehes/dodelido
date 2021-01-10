@@ -27,6 +27,7 @@ main div {
 
 main div[class] {
     border: 2px solid black;
+	box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.5);
 }
 
 .play {
@@ -35,6 +36,7 @@ main div[class] {
     border: 2px solid black;
     border-radius: 5px;
     padding: 10px;
+	margin: 15px auto;
     text-align: center;
     background-color: #ccc;
     font-weight: bold;
