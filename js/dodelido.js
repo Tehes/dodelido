@@ -4,7 +4,7 @@ var dodelido = (function() {
     ---------------------------------------------------------------------------------------------------*/
     var cards = [];
     var animals = ["Alpaka", "Wal", "Faultier", "Schildkröte", "Pinguin", "T-Rex"];
-    var colors = ["Pink", "Weiß", "Blau", "Gelb", "Grün", "Schwarz"];
+    var colors = ["Lila", "Weiß", "Blau", "Gelb", "Grün", "Schwarz"];
     var round = 0;
 
     /* --------------------------------------------------------------------------------------------------
@@ -71,10 +71,44 @@ var dodelido = (function() {
         cards[index] = newCard();
         var slot = document.querySelectorAll("main div")[index];
 
-        slot.className = cards[index].color + " " + cards[index].animal;
+		slot.dataset.color = cards[index].color;
+		slot.dataset.animal = cards[index].animal;
 
         round++;
-    }
+		
+		var colors = {};
+		cards.forEach(function(i) { colors[i.color] = (colors[i.color]||0) + 1;});
+		
+		var colorvalues = Object.values(colors);
+		var highestColorNo = Math.max(...colorvalues);
+		var colorIndex = colorvalues.indexOf(highestColorNo);
+		var colornames = Object.keys(colors);
+		
+		var animals = {};
+		cards.forEach(function(i) { animals[i.animal] = (animals[i.animal]||0) + 1;});
+		
+		var Om = "";
+		if (animals.Faultier) { 
+			for (var i = 0; i < animals.Faultier; i++) {
+				Om += "Om "
+			}
+		}
+		
+		var animalvalues = Object.values(animals);
+		var highestAnimalNo = Math.max(...animalvalues);
+		var animalIndex = animalvalues.indexOf(highestAnimalNo);
+		var animalnames = Object.keys(animals);
+		
+		var solution = "nichts";
+		if (animalvalues[animalIndex] > 1 && colorvalues[colorIndex] > 1 && animalvalues[animalIndex] === colorvalues[colorIndex]) { solution = "Dodelido";}
+		else if (animalvalues[animalIndex] > colorvalues[colorIndex]) { solution = animalnames[animalIndex];}
+		else if (animalvalues[animalIndex] < colorvalues[colorIndex]) { solution = colornames[colorIndex];}
+		
+		var solved = document.querySelector("#solved");
+		solved.textContent = Om + solution;
+   	}
+	
+	
 
     function init() {
         var playButton = document.querySelector(".play");
