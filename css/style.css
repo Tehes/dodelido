@@ -25,7 +25,7 @@ main div {
     background-origin: content-box;
 }
 
-main div[class] {
+main div[data-color][data-animal] {
     border: 2px solid black;
 	box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.5);
 }
@@ -42,58 +42,64 @@ main div[class] {
     font-weight: bold;
 }
 
-.Alpaka {
+#solved {
+	font-size: 2em;
+	width: 100%;
+	text-align: center;
+}
+
+[data-animal="Alpaka"] {
     background-image: url("../img/Alpaka.svg");
 }
 
-.T-Rex {
+[data-animal="T-Rex"] {
     background-image: url("../img/T-Rex.svg");
 }
 
-.Faultier {
+[data-animal="Faultier"] {
     background-image: url("../img/Faultier.svg");
 }
 
-.Schildkröte {
+[data-animal="Schildkröte"] {
     background-image: url("../img/Schildkröte.svg");
     background-size: 75% 75%;
 }
 
-.Pinguin {
+[data-animal="Pinguin"] {
     background-image: url("../img/Pinguin.svg");
     background-size: 80% 80%;
 }
 
-.Wal {
+[data-animal="Wal"] {
     background-image: url("../img/Wal.svg");
 }
 
-.Pink {
+[data-color="Lila"] {
     background-color: rgb(183, 117, 255);
     color: black;
 }
 
-.Weiß {
+[data-color="Weiß"] {
     background-color: White;
     color: black;
 }
 
-.Blau {
+[data-color="Blau"] {
     background-color: rgb(117, 167, 255);
     color: white;
 }
 
-.Gelb {
+[data-color="Gelb"] {
     background-color: rgb(255, 246, 117);
     color: black;
 }
 
-.Grün {
+[data-color="Grün"] {
     background-color: rgb(166, 255, 117);
     color: black;
 }
 
-.Schwarz {
+[data-color="Schwarz"] {
     background-color: rgb(71, 71, 71);
     color: white;
 }
