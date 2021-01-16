@@ -51,8 +51,6 @@ padding: 15px;
 margin: 30px auto;
 font-size: 1.5em;
 background: #FFFFFF;
--webkit-border-radius: 6px;
--moz-border-radius: 6px;
 border-radius: 6px;
 border: #000 solid 2px;
 font-family: 'Amatic SC', cursive;
@@ -60,22 +58,20 @@ font-size: 2.5em;
 color: #333;
 }
 
-#bubble:after 
-{
+#bubble:after {
 content: '';
 position: absolute;
 border-style: solid;
-border-width: 17px 16px 0;
+border-width: 15px 15px 0;
 border-color: #FFFFFF transparent;
 display: block;
 width: 0;
 z-index: 1;
-bottom: -16px;
-left: 65px;
+bottom: -15px;
+left: 97px;
 }
 
-#bubble:before 
-{
+#bubble:before {
 content: '';
 position: absolute;
 border-style: solid;
@@ -85,8 +81,9 @@ display: block;
 width: 0;
 z-index: 0;
 bottom: -18px;
-left: 65px;
+left: 96px;
 }
+
 
 [data-animal="Alpaka"] {
     background-image: url("../img/Alpaka.svg");
