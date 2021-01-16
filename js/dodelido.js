@@ -104,7 +104,7 @@ var dodelido = (function() {
 		else if (animalvalues[animalIndex] > colorvalues[colorIndex]) { solution = animalnames[animalIndex];}
 		else if (animalvalues[animalIndex] < colorvalues[colorIndex]) { solution = colornames[colorIndex];}
 		
-		var solved = document.querySelector("#solved");
+		var solved = document.querySelector("#bubble");
 		solved.textContent = Om + solution;
    	}
 	
