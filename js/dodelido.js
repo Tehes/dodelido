@@ -127,11 +127,11 @@ var dodelido = (function() {
             if (keywordsubstr !== inputsubstr) {
                 alert("Das war leider falsch. Richtig wäre '"+keyword+ "' gewesen.");
             }
-            if (keyword === getInput) {
-
-                play();
-                input = "";
-            }
+		}
+		else { alert("Das war leider falsch. Richtig wäre '"+keyword+ "' gewesen."); }
+		if (keyword === getInput) {
+			play();
+			input = "";
         }
     }
 
