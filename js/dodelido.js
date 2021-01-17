@@ -6,6 +6,8 @@ var dodelido = (function() {
     var animals = ["Alpaka", "Wal", "Faultier", "Schildkröte", "Pinguin", "T-Rex"];
     var colors = ["Lila", "Weiß", "Blau", "Gelb", "Grün", "Schwarz"];
     var round = 0;
+	var keyword;
+	var bubble = document.querySelector("#bubble");
 
     /* --------------------------------------------------------------------------------------------------
     functions
@@ -99,21 +101,33 @@ var dodelido = (function() {
 		var animalIndex = animalvalues.indexOf(highestAnimalNo);
 		var animalnames = Object.keys(animals);
 		
-		var solution = "nichts";
+		var solution = "Nichts";
 		if (animalvalues[animalIndex] > 1 && colorvalues[colorIndex] > 1 && animalvalues[animalIndex] === colorvalues[colorIndex]) { solution = "Dodelido";}
 		else if (animalvalues[animalIndex] > colorvalues[colorIndex]) { solution = animalnames[animalIndex];}
 		else if (animalvalues[animalIndex] < colorvalues[colorIndex]) { solution = colornames[colorIndex];}
 		
-		var solved = document.querySelector("#bubble");
-		solved.textContent = Om + solution;
+		keyword = Om + solution;
    	}
 	
+	function putKeyword(ev) {
+		bubble.textContent += ev.target.textContent + " ";
+		
+		solve(bubble.textContent.trim());
+	}
 	
+	function solve (input) {
+		if (keyword === input) {
+			play();
+			bubble.textContent = "";
+		}
+	}
 
     function init() {
         var playButton = document.querySelector(".play");
+		var buttons = document.querySelector("#buttons");
 
         playButton.addEventListener("click", play, false);
+		buttons.addEventListener("click", putKeyword, true)
     }
 
     /* --------------------------------------------------------------------------------------------------
