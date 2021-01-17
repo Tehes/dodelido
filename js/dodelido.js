@@ -135,7 +135,8 @@ var dodelido = (function() {
         var playButton = document.querySelector(".play");
         var cardstack = document.querySelector("main");
 		var buttons = document.querySelector("#buttons");
-
+		
+		document.addEventListener("touchstart", function() {},false);
         playButton.addEventListener("click", play, false);
 		buttons.addEventListener("click", putKeyword, true)
         cardstack.addEventListener("animationend", stopWiggling, true);
