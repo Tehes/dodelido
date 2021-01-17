@@ -119,13 +119,21 @@ var dodelido = (function() {
 		solve(input.trim());
 	}
 
-	function solve (getInput) {
-		if (keyword === getInput) {
+    function solve (getInput) {
+        if (getInput.length <= keyword.length) {
+            keywordsubstr = keyword.substring(0, getInput.length);
+            inputsubstr = getInput.substring(0, getInput.length);
 
-            play();
-            input = "";
-		}
-	}
+            if (keywordsubstr !== inputsubstr) {
+                alert("Das war leider falsch. Richtig wäre '"+keyword+ "' gewesen.");
+            }
+            if (keyword === getInput) {
+
+                play();
+                input = "";
+            }
+        }
+    }
 
     function stopWiggling(ev) {
         ev.target.classList.remove("wiggle");
@@ -135,11 +143,11 @@ var dodelido = (function() {
         var playButton = document.querySelector(".play");
         var cardstack = document.querySelector("main");
 		var buttons = document.querySelector("#buttons");
-		
+
 		document.addEventListener("touchstart", function() {},false);
         playButton.addEventListener("click", play, false);
 		buttons.addEventListener("click", putKeyword, true)
-        cardstack.addEventListener("animationend", stopWiggling, true);
+        cardstack.addEventListener("animationend", stopWiggling, false);
     }
 
     /* --------------------------------------------------------------------------------------------------
