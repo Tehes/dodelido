@@ -40,6 +40,7 @@ header span {
     text-align: center;
     background-color: #ccc;
 	margin-left: 50px;
+    cursor: pointer;
 }
 
 header span:nth-child(1) {
@@ -80,52 +81,12 @@ main div[data-color][data-animal] {
 	box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.5);
 }
 
-#bubble {
-position: relative;
-width: 300px;
-height: 80px;
-padding: 10px;
-margin: 30px auto;
-background: #FFFFFF;
-border-radius: 5px;
-border: #000 solid 2px;
-font-size: 1.5em;
-color: #333;
-text-align: center;
-}
-
-#bubble:after {
-content: '';
-position: absolute;
-border-style: solid;
-border-width: 15px 15px 0;
-border-color: #FFFFFF transparent;
-display: block;
-width: 0;
-z-index: 1;
-bottom: -15px;
-left: 97px;
-}
-
-#bubble:before {
-content: '';
-position: absolute;
-border-style: solid;
-border-width: 16px 16px 0;
-border-color: #000 transparent;
-display: block;
-width: 0;
-z-index: 0;
-bottom: -18px;
-left: 96px;
-}
-
 #buttons {
 	display: flex;
 	justify-content: space-between;
 	font-family: 'Amatic SC', cursive;
 	max-width: 860px;
-	margin: 0 auto;
+	margin: 30px auto;
 }
 
 #buttons ul {
@@ -144,6 +105,11 @@ left: 96px;
 	margin-bottom:15px;
 	padding: 10px;
 	text-align: center;
+    cursor: pointer;
+}
+
+#buttons li:active, #buttons li:focus {
+    background-color: #ccc !important;
 }
 
 [data-animal="Alpaka"] {
@@ -175,6 +141,7 @@ left: 96px;
 [data-color="Lila"] {
     background-color: rgb(183, 117, 255);
     color: black;
+    animation: wiggle 0.5s;
 }
 
 [data-color="Weiß"] {
@@ -200,4 +167,15 @@ left: 96px;
 [data-color="Schwarz"] {
     background-color: rgb(71, 71, 71);
     color: white;
+}
+
+.wiggle {
+    animation: wiggle 0.5s;
+}
+
+@keyframes wiggle {
+    0% { transform: rotate(0deg); }
+   33% { transform: rotate(3deg); }
+   66% { transform: rotate(-3deg); }
+  100% { transform: rotate(0deg); }
 }

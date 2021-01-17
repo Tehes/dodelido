@@ -7,7 +7,7 @@ var dodelido = (function() {
     var colors = ["Lila", "Weiß", "Blau", "Gelb", "Grün", "Schwarz"];
     var round = 0;
 	var keyword;
-	var bubble = document.querySelector("#bubble");
+	var input = "";
 
     /* --------------------------------------------------------------------------------------------------
     functions
@@ -75,59 +75,70 @@ var dodelido = (function() {
 
 		slot.dataset.color = cards[index].color;
 		slot.dataset.animal = cards[index].animal;
+        slot.className = "wiggle";
 
         round++;
-		
-		var colors = {};
+        setKeyword();
+   	}
+
+    function setKeyword() {
+        var colors = {};
 		cards.forEach(function(i) { colors[i.color] = (colors[i.color]||0) + 1;});
-		
+
 		var colorvalues = Object.values(colors);
 		var highestColorNo = Math.max(...colorvalues);
 		var colorIndex = colorvalues.indexOf(highestColorNo);
 		var colornames = Object.keys(colors);
-		
+
 		var animals = {};
 		cards.forEach(function(i) { animals[i.animal] = (animals[i.animal]||0) + 1;});
-		
+
 		var Om = "";
-		if (animals.Faultier) { 
+		if (animals.Faultier) {
 			for (var i = 0; i < animals.Faultier; i++) {
 				Om += "Om "
 			}
 		}
-		
+
 		var animalvalues = Object.values(animals);
 		var highestAnimalNo = Math.max(...animalvalues);
 		var animalIndex = animalvalues.indexOf(highestAnimalNo);
 		var animalnames = Object.keys(animals);
-		
+
 		var solution = "Nichts";
 		if (animalvalues[animalIndex] > 1 && colorvalues[colorIndex] > 1 && animalvalues[animalIndex] === colorvalues[colorIndex]) { solution = "Dodelido";}
 		else if (animalvalues[animalIndex] > colorvalues[colorIndex]) { solution = animalnames[animalIndex];}
 		else if (animalvalues[animalIndex] < colorvalues[colorIndex]) { solution = colornames[colorIndex];}
-		
+
 		keyword = Om + solution;
-   	}
-	
+    }
+
 	function putKeyword(ev) {
-		bubble.textContent += ev.target.textContent + " ";
-		
-		solve(bubble.textContent.trim());
+        input += ev.target.textContent + " ";
+
+		solve(input.trim());
 	}
-	
-	function solve (input) {
-		if (keyword === input) {
-			play();
-			bubble.textContent = "";
+
+	function solve (getInput) {
+		if (keyword === getInput) {
+
+            play();
+            input = "";
 		}
 	}
 
+    function stopWiggling(ev) {
+        ev.target.classList.remove("wiggle");
+    }
+
     function init() {
         var playButton = document.querySelector(".play");
+        var cardstack = document.querySelector("main");
 		var buttons = document.querySelector("#buttons");
 
         playButton.addEventListener("click", play, false);
 		buttons.addEventListener("click", putKeyword, true)
+        cardstack.addEventListener("animationend", stopWiggling, true);
     }
 
     /* --------------------------------------------------------------------------------------------------
