@@ -149,7 +149,6 @@ main div[data-color][data-animal] {
 [data-color="Lila"] {
     background-color: rgb(183, 117, 255);
     color: black;
-    animation: wiggle 0.5s;
 }
 
 [data-color="Weiß"] {
