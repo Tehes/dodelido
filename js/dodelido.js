@@ -126,9 +126,13 @@ var dodelido = (function() {
 
             if (keywordsubstr !== inputsubstr) {
                 alert("Das war leider falsch. Richtig wäre '"+keyword+ "' gewesen.");
+				reset();
             }
 		}
-		else { alert("Das war leider falsch. Richtig wäre '"+keyword+ "' gewesen."); }
+		else { 
+			alert("Das war leider falsch. Richtig wäre '"+keyword+ "' gewesen.");
+			reset();
+		}
 		if (keyword === getInput) {
 			play();
 			input = "";
@@ -138,14 +142,33 @@ var dodelido = (function() {
     function stopWiggling(ev) {
         ev.target.classList.remove("wiggle");
     }
+	
+	function reset() {
+		round = 0;
+		input = "";
+		keyword = "";
+		cards = [];
+		var cardstack = document.querySelectorAll("main div");
+		
+		for (var i = 0; i < cardstack.length; i++) {
+			delete cardstack[i].dataset.color;
+			delete cardstack[i].dataset.animal;
+			cardstack[i].classList.remove("wiggle");
+		}
+	}
+	
+	function start() {
+		reset();
+		play();
+	}
 
     function init() {
-        var playButton = document.querySelector(".play");
+        var startButton = document.querySelector(".start");
         var cardstack = document.querySelector("main");
 		var buttons = document.querySelector("#buttons");
 
 		document.addEventListener("touchstart", function() {},false);
-        playButton.addEventListener("click", play, false);
+        startButton.addEventListener("click", start, false);
 		buttons.addEventListener("click", putKeyword, true)
         cardstack.addEventListener("animationend", stopWiggling, false);
     }
