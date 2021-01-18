@@ -8,6 +8,7 @@ var dodelido = (function() {
     var round = 0;
 	var keyword;
 	var input = "";
+	var threeSecTimer;
 
     /* --------------------------------------------------------------------------------------------------
     functions
@@ -79,6 +80,7 @@ var dodelido = (function() {
 
         round++;
         setKeyword();
+		threeSecTimer = setTimeout(timer, 3000);
    	}
 
     function setKeyword() {
@@ -134,6 +136,7 @@ var dodelido = (function() {
 			reset();
 		}
 		if (keyword === getInput) {
+			clearTimeout(threeSecTimer);
 			play();
 			input = "";
         }
@@ -144,6 +147,7 @@ var dodelido = (function() {
     }
 	
 	function reset() {
+		clearTimeout(threeSecTimer);
 		round = 0;
 		input = "";
 		keyword = "";
@@ -160,6 +164,11 @@ var dodelido = (function() {
 	function start() {
 		reset();
 		play();
+	}
+	
+	function timer() {
+		alert("3 Sekunden sind um.")
+		reset();
 	}
 
     function init() {
