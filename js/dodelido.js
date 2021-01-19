@@ -124,9 +124,10 @@ var dodelido = (function() {
     }
 
 	function putKeyword(ev) {
-        input += ev.target.textContent + " ";
-
-		solve(input.trim());
+        if (ev.target.children.length === 0) {
+			input += ev.target.textContent + " ";
+			solve(input.trim());
+		}
 	}
 
     function solve (getInput) {
@@ -192,7 +193,7 @@ var dodelido = (function() {
 
 		document.addEventListener("touchstart", function() {},false);
         startButton.addEventListener("click", start, false);
-		buttons.addEventListener("click", putKeyword, true)
+		buttons.addEventListener("click", putKeyword, true);
         cardstack.addEventListener("animationend", stopWiggling, false);
     }
 
