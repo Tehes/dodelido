@@ -77,6 +77,10 @@ var dodelido = (function() {
 		slot.dataset.color = cards[index].color;
 		slot.dataset.animal = cards[index].animal;
         slot.className = "wiggle";
+		
+		if (cards[index].animal === "T-Rex") {
+			slot.addEventListener("click", catchTRex, false);
+		}
 
         round++;
         setKeyword();
@@ -113,6 +117,10 @@ var dodelido = (function() {
 		else if (animalvalues[animalIndex] < colorvalues[colorIndex]) { solution = colornames[colorIndex];}
 
 		keyword = Om + solution;
+		
+		if (animals["T-Rex"]) {
+			keyword = "T-Rex";
+		}
     }
 
 	function putKeyword(ev) {
@@ -169,6 +177,12 @@ var dodelido = (function() {
 	function timer() {
 		alert("3 Sekunden sind um.")
 		reset();
+	}
+	
+	function catchTRex() {
+		event.target.removeEventListener("click", catchTRex, false);
+		reset();
+		play();
 	}
 
     function init() {
