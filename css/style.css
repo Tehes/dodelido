@@ -28,7 +28,7 @@ header {
 	align-items: center;
 }
 
-header span {
+header > span {
 	font-size: 1.8em;
 	margin: 0;
 	padding: 0;
@@ -51,20 +51,25 @@ header span {
 	color: #fff;
 }
 
-header span:nth-child(1) {
+header > span:nth-child(1) {
 	color: rgb(255, 246, 117);
 }
 
-header span:nth-child(2) {
+header > span:nth-child(2) {
 	color: rgb(117, 167, 255);
 }
 
-header span:nth-child(3) {
+header > span:nth-child(3) {
 	color: rgb(166, 255, 117);
 }
 
-header span:nth-child(4) {
+header > span:nth-child(4) {
 	color: rgb(183, 117, 255);
+}
+
+.score {
+	color: #ccc;
+	margin-left: 50px;
 }
 
 main {

@@ -6,9 +6,11 @@ var dodelido = (function() {
     var animals = ["Alpaka", "Wal", "Faultier", "Schildkröte", "Pinguin", "T-Rex"];
     var colors = ["Lila", "Weiß", "Blau", "Gelb", "Grün", "Schwarz"];
     var round = 0;
+	var score = 0;
 	var keyword;
 	var input = "";
 	var threeSecTimer;
+	var scoreElement = document.querySelector(".score span");
 
     /* --------------------------------------------------------------------------------------------------
     functions
@@ -148,6 +150,8 @@ var dodelido = (function() {
 			clearTimeout(threeSecTimer);
 			play();
 			input = "";
+			score++
+			scoreElement.textContent = score;
         }
     }
 
@@ -158,6 +162,8 @@ var dodelido = (function() {
 	function reset() {
 		clearTimeout(threeSecTimer);
 		round = 0;
+		score = 0;
+		scoreElement.textContent = 0;
 		input = "";
 		keyword = "";
 		cards = [];
