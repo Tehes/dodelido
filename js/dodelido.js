@@ -159,11 +159,11 @@ var dodelido = (function() {
         ev.target.classList.remove("wiggle");
     }
 	
-	function reset() {
+	function reset(withoutScore) {
 		clearTimeout(threeSecTimer);
 		round = 0;
-		score = 0;
-		scoreElement.textContent = 0;
+		if (!withoutScore) { score = 0; }
+		scoreElement.textContent = score;
 		input = "";
 		keyword = "";
 		cards = [];
@@ -188,7 +188,7 @@ var dodelido = (function() {
 	
 	function catchTRex() {
 		event.target.removeEventListener("click", catchTRex, false);
-		reset();
+		reset(true);
 		play();
 	}
 
