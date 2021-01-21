@@ -90,6 +90,7 @@ main div {
     background-position: center center;
     background-repeat: no-repeat;
     background-origin: content-box;
+	background-color: #ddd;
 }
 
 main div[data-color][data-animal] {
