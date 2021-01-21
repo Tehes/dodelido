@@ -127,6 +127,7 @@ main div[data-color][data-animal] {
 
 #buttons li:active, #buttons li:focus {
     background-color: #ccc !important;
+	transform: translateY(2px);
 }
 
 [data-animal="Alpaka"] {

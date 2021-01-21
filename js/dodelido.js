@@ -133,7 +133,12 @@ var dodelido = (function() {
 	}
 
     function solve (getInput) {
-        if (getInput.length <= keyword.length) {
+        if (keyword === "T-Rex") {
+			alert("Du hättest den T-Rex anklicken müssen");
+			reset();
+			return;
+        }
+		if (getInput.length <= keyword.length) {
             keywordsubstr = keyword.substring(0, getInput.length);
             inputsubstr = getInput.substring(0, getInput.length);
 
