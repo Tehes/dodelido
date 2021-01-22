@@ -86,7 +86,7 @@ var dodelido = (function() {
 
         round++;
         setKeyword();
-		threeSecTimer = setTimeout(timer, 3000);
+		threeSecTimer = setTimeout(timer, 10000);
    	}
 
     function setKeyword() {
@@ -187,7 +187,7 @@ var dodelido = (function() {
 	}
 	
 	function timer() {
-		alert("3 Sekunden sind um.")
+		alert("10 Sekunden sind um.")
 		reset();
 	}
 	
