@@ -9,9 +9,11 @@ var dodelido = (function() {
 	var gameScore = 0;
 	var keyword;
 	var input = "";
-	var threeSecTimer;
+	var roundTimer;
+	var timerDuration = document.querySelector("input").value;
 	var displayGameScore = document.querySelector("#gameScore span");
 	var displayhighScore = document.querySelector("#highScore span");
+	var displayTimer = document.querySelector("#timer span");
 
 
     /* --------------------------------------------------------------------------------------------------
@@ -88,7 +90,7 @@ var dodelido = (function() {
 
         round++;
         setKeyword();
-		threeSecTimer = setTimeout(timer, 10000);
+		roundTimer = setTimeout(timer, timerDuration*1000);
    	}
 
     function setKeyword() {
@@ -154,7 +156,7 @@ var dodelido = (function() {
 			reset();
 		}
 		if (keyword === getInput) {
-			clearTimeout(threeSecTimer);
+			clearTimeout(roundTimer);
 			play();
 			input = "";
 			gameScore++
@@ -167,12 +169,12 @@ var dodelido = (function() {
     }
 
 	function reset(withoutScore) {
-		clearTimeout(threeSecTimer);
+		clearTimeout(roundTimer);
 		round = 0;
 		if (!withoutScore) {
             highScore = displayhighScore.textContent;
             if (gameScore > highScore) {
-                localStorage.setItem("Dodelido_highscore",gameScore);
+                localStorage.setItem("Dodelido_highscore_"+timerDuration,gameScore);
                 displayhighScore.textContent = gameScore;
             }
             gameScore = 0;
@@ -197,7 +199,7 @@ var dodelido = (function() {
 	}
 
 	function timer() {
-		alert("10 Sekunden sind um.")
+		alert(timerDuration+" Sekunden sind um.")
 		reset();
 	}
 
@@ -206,18 +208,26 @@ var dodelido = (function() {
 		reset(true);
 		play();
 	}
+	
+	function setTimerDuration() {
+		timerDuration = event.target.value;
+		displayTimer.textContent = timerDuration;
+		displayhighScore.textContent = localStorage.getItem("Dodelido_highscore_"+timerDuration) || 0;
+	}
 
     function init() {
         var startButton = document.querySelector(".start");
         var cardstack = document.querySelector("main");
 		var buttons = document.querySelector("#buttons");
+		var slider = document.querySelector("input");
 
-        displayhighScore.textContent = localStorage.getItem("Dodelido_highscore") || 0;
+        displayhighScore.textContent = localStorage.getItem("Dodelido_highscore_"+timerDuration) || 0;
 
 		document.addEventListener("touchstart", function() {},false);
         startButton.addEventListener("click", start, false);
 		buttons.addEventListener("click", putKeyword, true);
         cardstack.addEventListener("animationend", stopWiggling, false);
+		slider.addEventListener("input", setTimerDuration, false);
     }
 
     /* --------------------------------------------------------------------------------------------------

@@ -77,6 +77,37 @@ h1 > span:nth-child(4) {
     margin: 0 10px;
 }
 
+input[type=range] {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 64px;
+	height: 14px;
+	background: #ccc;
+	border-radius: 7px;
+	outline: none;
+	margin: 0 10px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 32px; 
+	height: 32px; 
+	background: #ccc;
+	border-radius: 16px;
+	border: 2px solid black;
+	cursor: pointer;
+}
+
+input[type=range]::-moz-range-thumb {
+	width: 32px; 
+	height: 32px; 
+	background: #ccc;
+	border-radius: 16px;
+	border: 2px solid black;
+	cursor: pointer;
+}
+
 main {
     display: flex;
 	justify-content: center;
@@ -209,9 +240,17 @@ main div[data-color][data-animal] {
 }
 
 @media only screen and (max-width: 480px) {
-    .score {
-            flex: 1 0 45%;
-            text-align: center;
-            margin: 5px;
-        }
+    h1 {
+		flex: 1 1 50%;
+    }
+	
+	.score {
+		flex: 0 1 25%;
+		text-align: center;
+		margin: 5px 2px;
+	}
+	
+	#timer {
+		flex: 0 1 auto;
+	}
 }
