@@ -6,11 +6,13 @@ var dodelido = (function() {
     var animals = ["Alpaka", "Wal", "Faultier", "Schildkröte", "Pinguin", "T-Rex"];
     var colors = ["Lila", "Weiß", "Blau", "Gelb", "Grün", "Schwarz"];
     var round = 0;
-	var score = 0;
+	var gameScore = 0;
 	var keyword;
 	var input = "";
 	var threeSecTimer;
-	var scoreElement = document.querySelector(".score span");
+	var displayGameScore = document.querySelector("#gameScore span");
+	var displayhighScore = document.querySelector("#highScore span");
+
 
     /* --------------------------------------------------------------------------------------------------
     functions
@@ -79,7 +81,7 @@ var dodelido = (function() {
 		slot.dataset.color = cards[index].color;
 		slot.dataset.animal = cards[index].animal;
         slot.className = "wiggle";
-		
+
 		if (cards[index].animal === "T-Rex") {
 			slot.addEventListener("click", catchTRex, false);
 		}
@@ -119,7 +121,7 @@ var dodelido = (function() {
 		else if (animalvalues[animalIndex] < colorvalues[colorIndex]) { solution = colornames[colorIndex];}
 
 		keyword = Om + solution;
-		
+
 		if (animals["T-Rex"]) {
 			keyword = "T-Rex";
 		}
@@ -147,7 +149,7 @@ var dodelido = (function() {
 				reset();
             }
 		}
-		else { 
+		else {
 			alert("Das war leider falsch. Richtig wäre '"+keyword+ "' gewesen.");
 			reset();
 		}
@@ -155,42 +157,50 @@ var dodelido = (function() {
 			clearTimeout(threeSecTimer);
 			play();
 			input = "";
-			score++
-			scoreElement.textContent = score;
+			gameScore++
+			displayGameScore.textContent = gameScore;
         }
     }
 
     function stopWiggling(ev) {
         ev.target.classList.remove("wiggle");
     }
-	
+
 	function reset(withoutScore) {
 		clearTimeout(threeSecTimer);
 		round = 0;
-		if (!withoutScore) { score = 0; }
-		scoreElement.textContent = score;
+		if (!withoutScore) {
+            highScore = displayhighScore.textContent;
+            if (gameScore > highScore) {
+                localStorage.setItem("Dodelido_highscore",gameScore);
+                displayhighScore.textContent = gameScore;
+            }
+            gameScore = 0;
+
+        }
+		displayGameScore.textContent = gameScore;
 		input = "";
 		keyword = "";
 		cards = [];
 		var cardstack = document.querySelectorAll("main div");
-		
+
 		for (var i = 0; i < cardstack.length; i++) {
 			delete cardstack[i].dataset.color;
 			delete cardstack[i].dataset.animal;
 			cardstack[i].classList.remove("wiggle");
 		}
 	}
-	
+
 	function start() {
 		reset();
 		play();
 	}
-	
+
 	function timer() {
 		alert("10 Sekunden sind um.")
 		reset();
 	}
-	
+
 	function catchTRex() {
 		event.target.removeEventListener("click", catchTRex, false);
 		reset(true);
@@ -201,6 +211,8 @@ var dodelido = (function() {
         var startButton = document.querySelector(".start");
         var cardstack = document.querySelector("main");
 		var buttons = document.querySelector("#buttons");
+
+        displayhighScore.textContent = localStorage.getItem("Dodelido_highscore") || 0;
 
 		document.addEventListener("touchstart", function() {},false);
         startButton.addEventListener("click", start, false);
