@@ -68,9 +68,11 @@ var dodelido = (function() {
     }
 
     function play() {
-        var index = round % 3;
+        var index, slot;
+        
+        index = round % 3;
         cards[index] = newCard();
-        var slot = document.querySelectorAll("main div")[index];
+        slot = document.querySelectorAll("main div")[index];
 
         slot.dataset.color = cards[index].color;
         slot.dataset.animal = cards[index].animal;
