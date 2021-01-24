@@ -7,6 +7,7 @@ var dodelido = (function() {
     var colors = ["Lila", "Weiß", "Blau", "Gelb", "Grün", "Schwarz"];
     var round = 0;
     var gameScore = 0;
+    var highScore;
     var keyword;
     var input = "";
     var roundTimer;
@@ -14,7 +15,7 @@ var dodelido = (function() {
     var displayGameScore = document.querySelector("#gameScore span");
     var displayhighScore = document.querySelector("#highScore span");
     var displayTimer = document.querySelector("#timer span");
-
+    var buttons = document.querySelector("#buttons");
 
     /* --------------------------------------------------------------------------------------------------
     functions
@@ -142,8 +143,8 @@ var dodelido = (function() {
             return;
         }
         if (getInput.length <= keyword.length) {
-            keywordsubstr = keyword.substring(0, getInput.length);
-            inputsubstr = getInput.substring(0, getInput.length);
+            var keywordsubstr = keyword.substring(0, getInput.length);
+            var inputsubstr = getInput.substring(0, getInput.length);
 
             if (keywordsubstr !== inputsubstr) {
                 alert("Das war leider falsch. Richtig wäre '" + keyword + "' gewesen.");
@@ -195,7 +196,6 @@ var dodelido = (function() {
 
     function start() {
         reset();
-        var buttons = document.querySelector("#buttons");
         buttons.addEventListener("click", putKeyword, true);
         play();
     }
