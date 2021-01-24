@@ -3,8 +3,6 @@ var dodelido = (function() {
     Variables
     ---------------------------------------------------------------------------------------------------*/
     var cards = [];
-    var animals = ["Alpaka", "Wal", "Faultier", "Schildkröte", "Pinguin", "T-Rex"];
-    var colors = ["Lila", "Weiß", "Blau", "Gelb", "Grün", "Schwarz"];
     var round = 0;
     var gameScore = 0;
     var highScore;
@@ -26,48 +24,50 @@ var dodelido = (function() {
 
     function newCard() {
         var animal, animalInt, color, colorInt;
+		var animalList = ["Alpaka", "Wal", "Faultier", "Schildkröte", "Pinguin", "T-Rex"];
+		var colorList = ["Lila", "Weiß", "Blau", "Gelb", "Grün", "Schwarz"];
 
         animalInt = getRndInteger(0, 105);
 
         if (animalInt <= 20) {
-            animal = animals[0];
+            animal = animalList[0];
         }
         else if (animalInt > 20 && animalInt <= 40) {
-            animal = animals[1];
+            animal = animalList[1];
         }
         else if (animalInt > 40 && animalInt <= 60) {
-            animal = animals[2];
+            animal = animalList[2];
         }
         else if (animalInt > 60 && animalInt <= 80) {
-            animal = animals[3];
+            animal = animalList[3];
         }
         else if (animalInt > 80 && animalInt <= 100) {
-            animal = animals[4];
+            animal = animalList[4];
         }
         else if (animalInt > 100 && animalInt <= 105) {
-            animal = animals[5];
+            animal = animalList[5];
         }
 
         colorInt = getRndInteger(0, 100);
 
         if (colorInt <= 20) {
-            color = colors[0];
+            color = colorList[0];
         }
         else if (colorInt > 20 && colorInt <= 40) {
-            color = colors[1];
+            color = colorList[1];
         }
         else if (colorInt > 40 && colorInt <= 60) {
-            color = colors[2];
+            color = colorList[2];
         }
         else if (colorInt > 60 && colorInt <= 80) {
-            color = colors[3];
+            color = colorList[3];
         }
         else if (colorInt > 80 && colorInt <= 100) {
-            color = colors[4];
+            color = colorList[4];
         }
 
         if (animal === "T-Rex") {
-            color = colors[5];
+            color = colorList[5];
         }
 
         return {
