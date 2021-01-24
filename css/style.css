@@ -3,56 +3,61 @@
 }
 
 html {
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 body {
     background-color: #eee;
-	font-family: 'Amatic SC', sans-serif;
+    font-family: 'Amatic SC', sans-serif;
     user-select: none;
-	-webkit-user-select: none;
-	-webkit-touch-callout: none;
-	margin: 0;
-	padding: 0;
-	font-size: 1.8em;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    margin: 0;
+    padding: 0;
+    font-size: 1.8em;
 }
 
+/*
+-------------------------------------------------------------------
+HEADER
+-------------------------------------------------------------------
+*/
 header {
-	width: 100%;
-	background-color: rgb(71, 71, 71);
-	margin-bottom: 2vmin;
-	padding: 5px;
-	display: flex;
-	justify-content: space-evenly;
-	align-items: center;
+    width: 100%;
+    background-color: rgb(71, 71, 71);
+    margin-bottom: 2vmin;
+    padding: 5px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
     flex-wrap: wrap;
 }
 
 h1 {
-	font-size: 1.8em;
-	margin: 0;
-	padding: 0 10px;
+    font-size: 1.8em;
+    margin: 0;
+    padding: 0 10px;
 }
 
-h1 > span {
-	margin: 0;
-	padding: 0;
+h1>span {
+    margin: 0;
+    padding: 0;
 }
 
-h1 > span:nth-child(1) {
-	color: rgb(255, 246, 117);
+h1>span:nth-child(1) {
+    color: rgb(255, 246, 117);
 }
 
-h1 > span:nth-child(2) {
-	color: rgb(117, 167, 255);
+h1>span:nth-child(2) {
+    color: rgb(117, 167, 255);
 }
 
-h1 > span:nth-child(3) {
-	color: rgb(166, 255, 117);
+h1>span:nth-child(3) {
+    color: rgb(166, 255, 117);
 }
 
-h1 > span:nth-child(4) {
-	color: rgb(183, 117, 255);
+h1>span:nth-child(4) {
+    color: rgb(183, 117, 255);
 }
 
 .start {
@@ -68,54 +73,59 @@ h1 > span:nth-child(4) {
 }
 
 .start:active, .start:focus {
-	background-color: #aaa;
-	color: #fff;
+    background-color: #aaa;
+    color: #fff;
 }
 
 .score {
-	color: #ccc;
+    color: #ccc;
     margin: 0 10px;
 }
 
 input[type=range] {
-	-webkit-appearance: none;
-	appearance: none;
-	width: 64px;
-	height: 14px;
-	background: #ccc;
-	border-radius: 7px;
-	outline: none;
-	margin: 0 10px;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 64px;
+    height: 14px;
+    background: #ccc;
+    border-radius: 7px;
+    outline: none;
+    margin: 0 10px;
 }
 
 input[type=range]::-webkit-slider-thumb {
-	-webkit-appearance: none;
-	appearance: none;
-	width: 32px;
-	height: 32px;
-	background: #ccc;
-	border-radius: 16px;
-	border: 2px solid black;
-	cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 32px;
+    height: 32px;
+    background: #ccc;
+    border-radius: 16px;
+    border: 2px solid black;
+    cursor: pointer;
 }
 
 input[type=range]::-moz-range-thumb {
-	width: 32px;
-	height: 32px;
-	background: #ccc;
-	border-radius: 16px;
-	border: 2px solid black;
-	cursor: pointer;
+    width: 32px;
+    height: 32px;
+    background: #ccc;
+    border-radius: 16px;
+    border: 2px solid black;
+    cursor: pointer;
 }
 
+/*
+-------------------------------------------------------------------
+CARDSTACK
+-------------------------------------------------------------------
+*/
 main {
     display: flex;
-	justify-content: center;
+    justify-content: center;
 }
 
 main div {
     width: 25vmin;
-	height: 35vmin;
+    height: 35vmin;
     margin: 2vmin;
     padding: 2vmin;
     border: 2px dashed black;
@@ -123,44 +133,12 @@ main div {
     background-position: center center;
     background-repeat: no-repeat;
     background-origin: content-box;
-	background-color: #ddd;
+    background-color: #ddd;
 }
 
 main div[data-color][data-animal] {
     border: 2px solid black;
-	box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.5);
-}
-
-#buttons {
-	display: flex;
-	justify-content: space-between;
-	font-family: 'Amatic SC', cursive;
-	max-width: 860px;
-	margin: 2vmin auto;
-}
-
-#buttons ul {
-  list-style: none;
-  padding: 0;
-  margin: 0 2vmin;
-  flex: 0 1 30%;
-}
-
-#buttons li {
-	width: 100%;
-	height: 60px;
-	background-color: #fff;
-	border: 2px solid #000;
-	border-radius: 5px;
-	margin-bottom:2vmin;
-	padding: 10px;
-	text-align: center;
-    cursor: pointer;
-}
-
-#buttons li:active, #buttons li:focus {
-    background-color: #ccc !important;
-	transform: translateY(2px);
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.5);
 }
 
 [data-animal="Alpaka"] {
@@ -223,20 +201,103 @@ main div[data-color][data-animal] {
     animation: wiggle 0.5s;
 }
 
-@keyframes wiggle {
-    0% { transform: rotate(0deg); }
-   33% { transform: rotate(3deg); }
-   66% { transform: rotate(-3deg); }
-  100% { transform: rotate(0deg); }
+/*
+-------------------------------------------------------------------
+BUTTONS
+-------------------------------------------------------------------
+*/
+#buttons {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Amatic SC', cursive;
+    max-width: 860px;
+    margin: 2vmin auto;
 }
 
+#buttons ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 2vmin;
+    flex: 0 1 30%;
+}
+
+#buttons li {
+    width: 100%;
+    height: 60px;
+    background-color: #fff;
+    border: 2px solid #000;
+    border-radius: 5px;
+    margin-bottom: 2vmin;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#buttons li:active, #buttons li:focus {
+    background-color: #ccc !important;
+    transform: translateY(2px);
+}
+
+/*
+-------------------------------------------------------------------
+FOOTER
+-------------------------------------------------------------------
+*/
+
+.footer {
+    font-size: 0.6em;
+    text-align: center;
+}
+
+.footer a, footer a:visited {
+    color: #666;
+    text-decoration: none;
+}
+
+.footer a:hover, .footer a:active {
+    text-decoration: underline;
+}
+
+.footer a:active {
+    color: #333;
+}
+
+/*
+-------------------------------------------------------------------
+ANIMATIONS
+-------------------------------------------------------------------
+*/
+
+@keyframes wiggle {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    33% {
+        transform: rotate(3deg);
+    }
+
+    66% {
+        transform: rotate(-3deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+/*
+-------------------------------------------------------------------
+MEDIA QUERIES
+-------------------------------------------------------------------
+*/
 @media only screen and (max-width: 812px) {
-	main div {
-    	width: 30vmin;
-		height: 40vmin;
-    	margin: 2vmin;
-    	padding: 2vmin;
-	}
+    main div {
+        width: 30vmin;
+        height: 40vmin;
+        margin: 2vmin;
+        padding: 2vmin;
+    }
 }
 
 @media only screen and (max-width: 630px) {
@@ -257,6 +318,6 @@ main div[data-color][data-animal] {
 
 @media only screen and (max-width: 480px) {
     h1 {
-		flex: 1 1 50%;
+        flex: 1 1 50%;
     }
 }
