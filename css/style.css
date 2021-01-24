@@ -244,21 +244,21 @@ FOOTER
 -------------------------------------------------------------------
 */
 
-.footer {
+footer {
     font-size: 0.6em;
     text-align: center;
 }
 
-.footer a, footer a:visited {
+footer a, footer a:visited {
     color: #666;
     text-decoration: none;
 }
 
-.footer a:hover, .footer a:active {
+footer a:hover, footer a:active {
     text-decoration: underline;
 }
 
-.footer a:active {
+footer a:active {
     color: #333;
 }
 
