@@ -236,6 +236,7 @@ var dodelido = (function() {
         timerDuration = event.target.value;
         displayTimer.textContent = timerDuration;
         displayhighScore.textContent = localStorage.getItem("Dodelido_highscore_" + timerDuration) || 0;
+        localStorage.setItem("Dodelido_timerDuration",timerDuration);
     }
 
     function init() {
@@ -243,6 +244,9 @@ var dodelido = (function() {
         var gameSpace = document.querySelector("main");
         var slider = document.querySelector("input");
 
+        timerDuration = localStorage.getItem("Dodelido_timerDuration") || 9;
+        document.querySelector("input").value = timerDuration;
+        displayTimer.textContent = timerDuration;
         displayhighScore.textContent = localStorage.getItem("Dodelido_highscore_" + timerDuration) || 0;
 
         document.addEventListener("touchstart", function() {}, false);
