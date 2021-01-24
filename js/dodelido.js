@@ -31,15 +31,20 @@ var dodelido = (function() {
 
         if (animalInt <= 20) {
             animal = animals[0];
-        } else if (animalInt > 20 && animalInt <= 40) {
+        }
+        else if (animalInt > 20 && animalInt <= 40) {
             animal = animals[1];
-        } else if (animalInt > 40 && animalInt <= 60) {
+        }
+        else if (animalInt > 40 && animalInt <= 60) {
             animal = animals[2];
-        } else if (animalInt > 60 && animalInt <= 80) {
+        }
+        else if (animalInt > 60 && animalInt <= 80) {
             animal = animals[3];
-        } else if (animalInt > 80 && animalInt <= 100) {
+        }
+        else if (animalInt > 80 && animalInt <= 100) {
             animal = animals[4];
-        } else if (animalInt > 100 && animalInt <= 105) {
+        }
+        else if (animalInt > 100 && animalInt <= 105) {
             animal = animals[5];
         }
 
@@ -47,13 +52,17 @@ var dodelido = (function() {
 
         if (colorInt <= 20) {
             color = colors[0];
-        } else if (colorInt > 20 && colorInt <= 40) {
+        }
+        else if (colorInt > 20 && colorInt <= 40) {
             color = colors[1];
-        } else if (colorInt > 40 && colorInt <= 60) {
+        }
+        else if (colorInt > 40 && colorInt <= 60) {
             color = colors[2];
-        } else if (colorInt > 60 && colorInt <= 80) {
+        }
+        else if (colorInt > 60 && colorInt <= 80) {
             color = colors[3];
-        } else if (colorInt > 80 && colorInt <= 100) {
+        }
+        else if (colorInt > 80 && colorInt <= 100) {
             color = colors[4];
         }
 
@@ -69,7 +78,7 @@ var dodelido = (function() {
 
     function play() {
         var index, slot;
-        
+
         index = round % 3;
         cards[index] = newCard();
         slot = document.querySelectorAll("main div")[index];
@@ -88,46 +97,51 @@ var dodelido = (function() {
     }
 
     function setKeyword() {
-        var colors = {};
+        var colors, colorvalues, highestColorNo, colorIndex, colornames, om, animals, animalvalues, highestAnimalNo, animalIndex, animalnames, solution;
+
+        colors = {};
         cards.forEach(function(i) {
             colors[i.color] = (colors[i.color] || 0) + 1;
         });
 
-        var colorvalues = Object.values(colors);
-        var highestColorNo = Math.max(...colorvalues);
-        var colorIndex = colorvalues.indexOf(highestColorNo);
-        var colornames = Object.keys(colors);
+        colorvalues = Object.values(colors);
+        highestColorNo = Math.max(...colorvalues);
+        colorIndex = colorvalues.indexOf(highestColorNo);
+        colornames = Object.keys(colors);
 
-        var animals = {};
+        animals = {};
         cards.forEach(function(i) {
             animals[i.animal] = (animals[i.animal] || 0) + 1;
         });
 
-        var Om = "";
+        om = "";
         if (animals.Faultier) {
             for (var i = 0; i < animals.Faultier; i++) {
-                Om += "Om ";
+                om += "Om ";
             }
         }
 
-        var animalvalues = Object.values(animals);
-        var highestAnimalNo = Math.max(...animalvalues);
-        var animalIndex = animalvalues.indexOf(highestAnimalNo);
-        var animalnames = Object.keys(animals);
+        animalvalues = Object.values(animals);
+        highestAnimalNo = Math.max(...animalvalues);
+        animalIndex = animalvalues.indexOf(highestAnimalNo);
+        animalnames = Object.keys(animals);
 
-        var solution = "Nichts";
+        solution = "Nichts";
         if (animalvalues[animalIndex] > 1 && colorvalues[colorIndex] > 1 && animalvalues[animalIndex] === colorvalues[colorIndex]) {
             solution = "Dodelido";
-        } else if (animalvalues[animalIndex] > colorvalues[colorIndex]) {
+        }
+        else if (animalvalues[animalIndex] > colorvalues[colorIndex]) {
             solution = animalnames[animalIndex];
-        } else if (animalvalues[animalIndex] < colorvalues[colorIndex]) {
+        }
+        else if (animalvalues[animalIndex] < colorvalues[colorIndex]) {
             solution = colornames[colorIndex];
         }
 
-        keyword = Om + solution;
-
         if (animals["T-Rex"]) {
             keyword = "T-Rex";
+        }
+        else {
+            keyword = om + solution;
         }
     }
 
@@ -139,20 +153,23 @@ var dodelido = (function() {
     }
 
     function solve(getInput) {
+        var keywordsubstr, inputsubstr;
+
         if (keyword === "T-Rex") {
             alert("Du hättest den T-Rex anklicken müssen");
             reset();
             return;
         }
         if (getInput.length <= keyword.length) {
-            var keywordsubstr = keyword.substring(0, getInput.length);
-            var inputsubstr = getInput.substring(0, getInput.length);
+            keywordsubstr = keyword.substring(0, getInput.length);
+            inputsubstr = getInput.substring(0, getInput.length);
 
             if (keywordsubstr !== inputsubstr) {
                 alert("Das war leider falsch. Richtig wäre '" + keyword + "' gewesen.");
                 reset();
             }
-        } else {
+        }
+        else {
             alert("Das war leider falsch. Richtig wäre '" + keyword + "' gewesen.");
             reset();
         }
@@ -170,6 +187,8 @@ var dodelido = (function() {
     }
 
     function reset(withoutScore) {
+        var cardstack, i;
+
         clearTimeout(roundTimer);
         round = 0;
 
@@ -187,9 +206,9 @@ var dodelido = (function() {
         input = "";
         keyword = "";
         cards = [];
-        var cardstack = document.querySelectorAll("main div");
+        cardstack = document.querySelectorAll("main div");
 
-        for (var i = 0; i < cardstack.length; i++) {
+        for (i = 0; i < cardstack.length; i++) {
             delete cardstack[i].dataset.color;
             delete cardstack[i].dataset.animal;
             cardstack[i].classList.remove("wiggle");
@@ -221,14 +240,14 @@ var dodelido = (function() {
 
     function init() {
         var startButton = document.querySelector(".start");
-        var cardstack = document.querySelector("main");
+        var gameSpace = document.querySelector("main");
         var slider = document.querySelector("input");
 
         displayhighScore.textContent = localStorage.getItem("Dodelido_highscore_" + timerDuration) || 0;
 
         document.addEventListener("touchstart", function() {}, false);
         startButton.addEventListener("click", start, false);
-        cardstack.addEventListener("animationend", stopWiggling, false);
+        gameSpace.addEventListener("animationend", stopWiggling, false);
         slider.addEventListener("input", setTimerDuration, false);
     }
 
