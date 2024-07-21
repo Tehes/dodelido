@@ -1,4 +1,4 @@
-var dodelido = (function() {
+var dodelido = (function () {
     /* --------------------------------------------------------------------------------------------------
     Variables
     ---------------------------------------------------------------------------------------------------*/
@@ -24,8 +24,8 @@ var dodelido = (function() {
 
     function newCard() {
         var animal, animalInt, color, colorInt;
-		var animalList = ["Alpaka", "Wal", "Faultier", "Schildkröte", "Pinguin", "T-Rex"];
-		var colorList = ["Lila", "Weiß", "Blau", "Gelb", "Grün", "Schwarz"];
+        var animalList = ["Alpaka", "Wal", "Faultier", "Schildkröte", "Pinguin", "T-Rex"];
+        var colorList = ["Lila", "Weiß", "Blau", "Gelb", "Grün", "Schwarz"];
 
         animalInt = getRndInteger(0, 105);
 
@@ -100,7 +100,7 @@ var dodelido = (function() {
         var colors, colorvalues, highestColorNo, colorIndex, colornames, om, animals, animalvalues, highestAnimalNo, animalIndex, animalnames, solution;
 
         colors = {};
-        cards.forEach(function(i) {
+        cards.forEach(function (i) {
             colors[i.color] = (colors[i.color] || 0) + 1;
         });
 
@@ -110,7 +110,7 @@ var dodelido = (function() {
         colornames = Object.keys(colors);
 
         animals = {};
-        cards.forEach(function(i) {
+        cards.forEach(function (i) {
             animals[i.animal] = (animals[i.animal] || 0) + 1;
         });
 
@@ -146,9 +146,13 @@ var dodelido = (function() {
     }
 
     function putKeyword(ev) {
-        console.log(ev.target.tagName)
-        if (ev.target.tagName === "LI") {
-            input += ev.target.textContent + " ";
+        var target = ev.target;
+
+        if (target.tagName === "DIV") {
+            target = target.parentElement;
+        }
+        if (target.tagName === "LI") {
+            input += target.textContent + " ";
             solve(input.trim());
         }
     }
@@ -200,7 +204,7 @@ var dodelido = (function() {
                 displayhighScore.textContent = gameScore;
             }
             gameScore = 0;
-            buttons.removeEventListener("click", putKeyword, true);
+            buttons.removeEventListener("click", putKeyword, false);
         }
 
         displayGameScore.textContent = gameScore;
@@ -218,7 +222,7 @@ var dodelido = (function() {
 
     function start() {
         reset();
-        buttons.addEventListener("click", putKeyword, true);
+        buttons.addEventListener("click", putKeyword, false);
         play();
     }
 
@@ -237,7 +241,7 @@ var dodelido = (function() {
         timerDuration = event.target.value;
         displayTimer.textContent = timerDuration;
         displayhighScore.textContent = localStorage.getItem("Dodelido_highscore_" + timerDuration) || 0;
-        localStorage.setItem("Dodelido_timerDuration",timerDuration);
+        localStorage.setItem("Dodelido_timerDuration", timerDuration);
     }
 
     function init() {
@@ -250,7 +254,7 @@ var dodelido = (function() {
         displayTimer.textContent = timerDuration;
         displayhighScore.textContent = localStorage.getItem("Dodelido_highscore_" + timerDuration) || 0;
 
-        document.addEventListener("touchstart", function() {}, false);
+        document.addEventListener("touchstart", function () { }, false);
         startButton.addEventListener("click", start, false);
         gameSpace.addEventListener("animationend", stopWiggling, false);
         slider.addEventListener("input", setTimerDuration, false);
