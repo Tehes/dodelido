@@ -229,8 +229,17 @@ BUTTONS
     border-radius: 5px;
     margin-bottom: 2vmin;
     padding: 10px;
-    text-align: center;
     cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: clamp(1.4rem, 2.5vw, 2.5rem);
+}
+
+#buttons div {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #999;
 }
 
 #buttons li:active, #buttons li:focus {

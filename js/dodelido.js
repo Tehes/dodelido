@@ -145,9 +145,10 @@ var dodelido = (function() {
         }
     }
 
-    function putKeyword() {
-        if (event.target.children.length === 0) {
-            input += event.target.textContent + " ";
+    function putKeyword(ev) {
+        console.log(ev.target.tagName)
+        if (ev.target.tagName === "LI") {
+            input += ev.target.textContent + " ";
             solve(input.trim());
         }
     }
