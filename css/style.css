@@ -234,11 +234,17 @@ BUTTONS
     justify-content: space-between;
     align-items: center;
     font-size: clamp(1.4rem, 2.5vw, 2.5rem);
-}
+} 
 
 #buttons div {
     width: 40px;
     height: 40px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-origin: content-box;
+}
+
+#buttons div[data-color] {
     border: 1px solid #999;
 }
 
