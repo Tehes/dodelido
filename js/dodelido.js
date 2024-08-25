@@ -14,6 +14,8 @@ var dodelido = (function () {
     var displayhighScore = document.querySelector("#highScore span");
     var displayTimer = document.querySelector("#timer span");
     var buttons = document.querySelector("#buttons");
+    var instructions = document.querySelector("aside");
+    var firstVisit = JSON.parse(localStorage.getItem("dodelido_firstVisit") || true);
 
     /* --------------------------------------------------------------------------------------------------
     functions
@@ -244,8 +246,16 @@ var dodelido = (function () {
         localStorage.setItem("Dodelido_timerDuration", timerDuration);
     }
 
+    function toggleWindow() {
+            instructions.classList.toggle("hidden");
+    }
+
     function init() {
+        if (firstVisit === true) {
+            instructions.classList.remove("hidden");
+        }
         var startButton = document.querySelector(".start");
+        var helpButton = document.querySelector(".help");
         var gameSpace = document.querySelector("main");
         var slider = document.querySelector("input");
 
@@ -258,6 +268,11 @@ var dodelido = (function () {
         startButton.addEventListener("click", start, false);
         gameSpace.addEventListener("animationend", stopWiggling, false);
         slider.addEventListener("input", setTimerDuration, false);
+        helpButton.addEventListener("click", toggleWindow, false);
+        instructions.addEventListener("click", toggleWindow, false);
+        window.addEventListener("unload", function() {
+            localStorage.setItem("dodelido_firstVisit", JSON.stringify(false));
+        }, false);
     }
 
     /* --------------------------------------------------------------------------------------------------
